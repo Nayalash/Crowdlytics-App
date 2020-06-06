@@ -78,6 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
               //TITLE
               Center(
                 child: Text("${DATA.storeName}",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.white,
@@ -105,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               Center(
-                child: Text("${DATA.max}",
+                child: Text("Max People: ${DATA.max}",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.white,
