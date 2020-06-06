@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:crowdlytics/utils/data.dart' as DATA;
 import 'package:crowdlytics/screens/app/profile_screen.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -13,8 +15,14 @@ class _HomeScreenState extends State<HomeScreen> {
   int n = 0;
 
   void add() {
-    setState(() {
+    setState(() async {
       n++;
+      var url = 'http://localhost:4567/api/store/count';
+      var response = await http.put(url, body: json.encode(
+          {
+            "owner_id": DATA.ownerID,
+          }),
+          headers: {"Content-Type": "application/json"});
     });
   }
 
@@ -65,7 +73,12 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
 
               //TITLE
-              Text("${DATA.storeName}"),
+              Text("${DATA.storeName}",
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                ),
+              ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
