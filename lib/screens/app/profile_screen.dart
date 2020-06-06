@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:crowdlytics/components/rounded_button.dart';
 import 'package:crowdlytics/utils/styles.dart';
+import 'package:crowdlytics/utils/data.dart' as DATA;
 
 class ProfileScreen extends StatefulWidget {
 
@@ -42,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: kSTORENAME,
 
                   onChanged: (value) {
-                    //expense = value;
+                    DATA.storeName = value;
                   },
                 ),
 
@@ -58,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: kMAX,
 
                   onChanged: (value) {
-                    //price = double.parse(value);
+                    DATA.max = int.parse(value);
                   },
                 ),
 
@@ -94,8 +95,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     //price = double.parse(value);
                   },
                 ),
-
-
 
 
                 SizedBox(
