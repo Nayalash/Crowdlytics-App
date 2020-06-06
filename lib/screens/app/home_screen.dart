@@ -17,7 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void add() {
     setState(() async {
-      n++;
+      if (n < DATA.max) {
+        n++;
+      }
       var url = 'http://localhost:4567/api/store/count';
       var response = await http.put(url, body: json.encode(
           {
@@ -83,7 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -101,6 +102,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Icon(Icons.remove, color: Colors.red),
                   ),
                 ],
+              ),
+
+              Center(
+                child: Text("${DATA.max}",
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                  ),
+                ),
               ),
 
             ],
