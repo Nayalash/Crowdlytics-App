@@ -20,7 +20,10 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+
+
   GoogleSignInAccount _currentUser;
+
   @override
   void initState() {
     super.initState();
@@ -80,7 +83,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               colour: Colors.red,
               onPressed: () {
                 _handleSignIn();
-                //Navigator.pushNamed(context, HomeScreen.id);
+                Navigator.pushNamed(context, HomeScreen.id);
               },
             ),
           ],

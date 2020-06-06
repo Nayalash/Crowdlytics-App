@@ -67,14 +67,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: <Widget>[
                   FloatingActionButton(
                     heroTag: "btn1",
+                    backgroundColor: Colors.white,
                     onPressed: add,
-                    child: Icon(Icons.add, color: Colors.white),
+                    child: Icon(Icons.add, color: Colors.red),
                   ),
-                  Text('$n', style: TextStyle(fontSize: 20.0)),
+                  Text('$n', style: TextStyle(fontSize: 20.0, color: Colors.white)),
                   FloatingActionButton(
                     heroTag: "btn2",
+                    backgroundColor: Colors.white,
                     onPressed: minus,
-                    child: Icon(Icons.remove, color: Colors.white),
+                    child: Icon(Icons.remove, color: Colors.red),
                   ),
                 ],
               ),
