@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:crowdlytics/components/rounded_button.dart';
 import 'package:crowdlytics/utils/styles.dart';
 import 'package:crowdlytics/utils/data.dart' as DATA;
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ProfileScreen extends StatefulWidget {
 
@@ -75,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: kX,
 
                   onChanged: (value) {
-                    //price = double.parse(value);
+                    DATA.x = double.parse(value);
                   },
                 ),
 
@@ -92,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   decoration: kY,
 
                   onChanged: (value) {
-                    //price = double.parse(value);
+                    DATA.y = double.parse(value);
                   },
                 ),
 
@@ -105,7 +107,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   title: "Submit",
                   colour: Colors.black,
                   onPressed: () async {
-
+                    // need to change endpoint once ready
+                    var url = 'http://localhost:4567/login';
+                    var response = await http.post(url, body: json.encode(
+                        {
+                          "owner_id": DATA.ownerID,
+                          "store_name": DATA.storeName,
+                          "max": DATA.max,
+                          "latitude": DATA.x,
+                          "longitude": DATA.y
+                        }),
+                        headers: {"Content-Type": "application/json"});
 
                   },
                 ),
