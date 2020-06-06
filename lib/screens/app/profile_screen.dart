@@ -108,8 +108,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   colour: Colors.black,
                   onPressed: () async {
                     // need to change endpoint once ready
-                    var url = 'http://localhost:4567/login';
-                    var response = await http.post(url, body: json.encode(
+                    var url = 'http://localhost:4567/api/store';
+                    var response = await http.patch(url, body: json.encode(
                         {
                           "owner_id": DATA.ownerID,
                           "store_name": DATA.storeName,
