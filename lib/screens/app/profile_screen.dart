@@ -55,22 +55,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     color: Colors.white,
                   ),
 
-                  decoration: kCOUNT,
-
-                  onChanged: (value) {
-                    //price = double.parse(value);
-                  },
-                ),
-
-                SizedBox(
-                  height: 10,
-                ),
-
-                TextField(
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-
                   decoration: kMAX,
 
                   onChanged: (value) {

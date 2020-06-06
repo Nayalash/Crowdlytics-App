@@ -38,21 +38,6 @@ const kSTORENAME = InputDecoration(
   ),
 );
 
-const kCOUNT = InputDecoration(
-  filled: true,
-  fillColor: Colors.white,
-  hintText: 'Enter Manual Count',
-  hintStyle: TextStyle(
-    color: Colors.black,
-  ),
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(
-      Radius.circular(10.0),
-    ),
-    borderSide: BorderSide.none,
-  ),
-);
-
 const kMAX = InputDecoration(
   filled: true,
   fillColor: Colors.white,
