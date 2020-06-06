@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:crowdlytics/components/rounded_button.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
@@ -21,19 +23,24 @@ class WelcomeScreen extends StatefulWidget {
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
   GoogleSignInAccount _currentUser;
+  String _contactText;
+
+  String data;
+
   @override
   void initState() {
     super.initState();
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) async {
       setState(() {
         _currentUser = account;
       });
       if (_currentUser != null) {
-        //TODO LOGGED IN
+
       }
     });
-    _googleSignIn.signInSilently();
+    //_googleSignIn.signInSilently();
   }
+
 
   Future<void> _handleSignIn() async {
     try {
@@ -55,6 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
+                Text(data == null ? "loading" : data),
                 Hero(
                   tag: 'logo',
                   child: Container(
@@ -78,8 +86,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             RoundedButton(
               title: "Sign In With Google",
               colour: Colors.red,
-              onPressed: () {
-                _handleSignIn();
+              onPressed: () async {
+                await _handleSignIn();
+                var url = 'http://localhost:4567/login';
+
+                var response = await http.post(url, body: json.encode(
+                    {
+                      "display_name": _currentUser.displayName,
+                      "photo_url": _currentUser.photoUrl,
+                      "id" : _currentUser.id
+                    }),
+                    headers: {"Content-Type": "application/json"});
+                setState(() {
+                  data = response.body;
+                });
                 //Navigator.pushNamed(context, HomeScreen.id);
               },
             ),
