@@ -2,6 +2,13 @@ import 'package:crowdlytics/screens/app/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:crowdlytics/components/rounded_button.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: <String>[
+    'email'
+  ],
+);
 
 
 class WelcomeScreen extends StatefulWidget {
@@ -13,6 +20,29 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  GoogleSignInAccount _currentUser;
+  @override
+  void initState() {
+    super.initState();
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+      setState(() {
+        _currentUser = account;
+      });
+      if (_currentUser != null) {
+        //TODO LOGGED IN
+      }
+    });
+    _googleSignIn.signInSilently();
+  }
+
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+    } catch (error) {
+      print(error);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +79,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               title: "Sign In With Google",
               colour: Colors.red,
               onPressed: () {
-                Navigator.pushNamed(context, HomeScreen.id);
+                _handleSignIn();
+                //Navigator.pushNamed(context, HomeScreen.id);
               },
             ),
           ],
@@ -58,3 +89,5 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
     );
   }
 }
+
+
