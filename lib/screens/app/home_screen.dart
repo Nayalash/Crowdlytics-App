@@ -73,12 +73,15 @@ class _HomeScreenState extends State<HomeScreen> {
             children: <Widget>[
 
               //TITLE
-              Text("${DATA.storeName}",
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.white,
+              Center(
+                child: Text("${DATA.storeName}",
+                  style: TextStyle(
+                    fontSize: 24,
+                    color: Colors.white,
+                  ),
                 ),
               ),
+
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
