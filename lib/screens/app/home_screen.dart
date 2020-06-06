@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:crowdlytics/utils/data.dart' as DATA;
 import 'package:crowdlytics/screens/app/profile_screen.dart';
+import 'package:crowdlytics/screens/app/view_screen.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 35.0,
               ),
               onPressed: () {
-                //Navigator.pushNamed(context, HistoryScreen.id);
+                Navigator.pushNamed(context, ViewScreen.id);
               }),
         ),
         actions: <Widget>[
