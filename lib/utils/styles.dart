@@ -72,7 +72,7 @@ const kMAX = InputDecoration(
 const kX = InputDecoration(
   filled: true,
   fillColor: Colors.white,
-  hintText: 'Enter Price of The Expense',
+  hintText: 'Enter Latitude',
   hintStyle: TextStyle(
     color: Colors.black,
   ),
@@ -88,7 +88,7 @@ const kX = InputDecoration(
 const kY = InputDecoration(
   filled: true,
   fillColor: Colors.white,
-  hintText: 'Enter Price of The Expense',
+  hintText: 'Enter Longitude',
   hintStyle: TextStyle(
     color: Colors.black,
   ),
