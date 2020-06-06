@@ -29,7 +29,7 @@ class CustomCardList extends StatelessWidget {
           subtitle: Text(
             subtitle,
             style: TextStyle(
-                color: Colors.orangeAccent
+                color: Colors.yellowAccent
             ),
           ),
         )
