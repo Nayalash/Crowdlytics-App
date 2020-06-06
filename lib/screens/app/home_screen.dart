@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:crowdlytics/utils/data.dart' as DATA;
+import 'package:crowdlytics/screens/app/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -49,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   size: 35.0,
                 ),
                 onPressed: () {
-                  //Navigator.pushNamed(context, AddScreen.id);
+                  Navigator.pushNamed(context, ProfileScreen.id);
                 }),
           ),
         ],
@@ -71,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: add,
                     child: Icon(Icons.add, color: Colors.red),
                   ),
-                  Text('$n', style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                  Text('${DATA.count}', style: TextStyle(fontSize: 20.0, color: Colors.white)),
                   FloatingActionButton(
                     heroTag: "btn2",
                     backgroundColor: Colors.white,
@@ -80,6 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               ),
+
+              Text("${DATA.storeName}"),
 
             ],
           ),

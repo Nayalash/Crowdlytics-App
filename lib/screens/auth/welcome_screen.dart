@@ -6,6 +6,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+
+
+import 'package:crowdlytics/utils/data.dart' as DATA;
+
 GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
     'email'
@@ -65,7 +69,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: <Widget>[
             Row(
               children: <Widget>[
-                Text(data == null ? "loading" : data),
                 Hero(
                   tag: 'logo',
                   child: Container(
@@ -100,10 +103,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       "id" : _currentUser.id
                     }),
                     headers: {"Content-Type": "application/json"});
-                setState(() {
-                  data = response.body;
-                });
-                //Navigator.pushNamed(context, HomeScreen.id);
+
+
+                DATA.ownerID = json.decode(response.body)["owner_id"];
+                DATA.storeID = json.decode(response.body)["store_id"];
+                DATA.storeName = json.decode(response.body)["store_name"];
+                DATA.emails = json.decode(response.body)["emails"];
+                DATA.count = json.decode(response.body)["count"];
+                DATA.max = json.decode(response.body)["max"];
+                DATA.x = json.decode(response.body)["latitude"];
+                DATA.y = json.decode(response.body)["longitude"];
+
+                Navigator.pushNamed(context, HomeScreen.id);
 
               },
             ),
