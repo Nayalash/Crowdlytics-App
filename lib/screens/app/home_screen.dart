@@ -66,18 +66,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   FloatingActionButton(
+                    heroTag: "btn1",
                     onPressed: add,
                     child: Icon(Icons.add, color: Colors.white),
                   ),
                   Text('$n', style: TextStyle(fontSize: 20.0)),
                   FloatingActionButton(
+                    heroTag: "btn2",
                     onPressed: minus,
                     child: Icon(Icons.remove, color: Colors.white),
                   ),
                 ],
               ),
 
-              
             ],
           ),
         ),
