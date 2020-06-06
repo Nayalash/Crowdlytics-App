@@ -22,10 +22,13 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
-  GoogleSignInAccount _currentUser;
-  String _contactText;
 
+
+  GoogleSignInAccount _currentUser;
+
+  String _contactText;
   String data;
+
 
   @override
   void initState() {
@@ -44,7 +47,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   Future<void> _handleSignIn() async {
     try {
-      await _googleSignIn.signIn();
+      _currentUser = await _googleSignIn.signIn();
     } catch (error) {
       print(error);
     }
@@ -101,6 +104,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   data = response.body;
                 });
                 //Navigator.pushNamed(context, HomeScreen.id);
+
               },
             ),
           ],
