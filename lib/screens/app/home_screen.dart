@@ -14,19 +14,21 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int n = 0;
+  int MAX = DATA.max;
 
-  void add() {
-    setState(() async {
-      if (n < DATA.max) {
+  void add() async {
+    setState(() {
+      if (n < MAX) {
         n++;
       }
-      var url = 'http://localhost:4567/api/store/count';
-      var response = await http.put(url, body: json.encode(
-          {
-            "owner_id": DATA.ownerID,
-          }),
-          headers: {"Content-Type": "application/json"});
     });
+
+    var url = 'http://localhost:4567/api/store/count';
+    var response = await http.put(url,
+        body: json.encode({
+          "owner_id": DATA.ownerID,
+        }),
+        headers: {"Content-Type": "application/json"});
   }
 
   void minus() {
@@ -74,10 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-
               //TITLE
               Center(
-                child: Text("${DATA.storeName}",
+                child: Text(
+                  "${DATA.storeName}",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 24,
@@ -95,7 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: add,
                     child: Icon(Icons.add, color: Colors.red),
                   ),
-                  Text('${DATA.count}', style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                  Text('${n}',
+                      style: TextStyle(fontSize: 20.0, color: Colors.white)),
                   FloatingActionButton(
                     heroTag: "btn2",
                     backgroundColor: Colors.white,
@@ -106,14 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               Center(
-                child: Text("Max People: ${DATA.max}",
+                child: Text(
+                  "Max People: ${DATA.max}",
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.white,
                   ),
                 ),
               ),
-
             ],
           ),
         ),

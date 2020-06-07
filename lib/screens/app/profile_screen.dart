@@ -4,6 +4,7 @@ import 'package:crowdlytics/utils/styles.dart';
 import 'package:crowdlytics/utils/data.dart' as DATA;
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:crowdlytics/screens/app/home_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
 
@@ -23,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           color: Colors.white, //change your color here
         ),
         title: Text(
-          "Add Expense",
+          "Edit Info",
           style: TextStyle(
             color: Colors.white,
           ),
@@ -39,13 +40,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 TextField(
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
 
                   decoration: kSTORENAME,
 
                   onChanged: (value) {
-                    DATA.storeName = value;
+                    if (value != null) {
+                      DATA.storeName = value;
+                    }
+
                   },
                 ),
 
@@ -55,13 +59,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 TextField(
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
 
                   decoration: kMAX,
 
                   onChanged: (value) {
-                    DATA.max = int.parse(value);
+                    if (value != null) {
+                      DATA.max = int.parse(value);
+                    }
                   },
                 ),
 
@@ -71,13 +77,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 TextField(
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
 
                   decoration: kX,
 
                   onChanged: (value) {
-                    DATA.x = double.parse(value);
+
+                    if (value != null) {
+                      DATA.x = double.parse(value);
+                    }
+
                   },
                 ),
 
@@ -88,13 +98,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 TextField(
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
 
                   decoration: kY,
 
                   onChanged: (value) {
-                    DATA.y = double.parse(value);
+                    if (value != null) {
+                      DATA.y = double.parse(value);
+                    }
+
                   },
                 ),
 
@@ -118,6 +131,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           "longitude": DATA.y
                         }),
                         headers: {"Content-Type": "application/json"});
+
+                    Navigator.pushNamed(context, HomeScreen.id);
 
                   },
                 ),
